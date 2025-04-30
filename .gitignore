@@ -1,0 +1,5 @@
+
+# Local dev TLS
+localhost*.key
+localhost*.crt
+*.pfx
