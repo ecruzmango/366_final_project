@@ -2,4 +2,6 @@
 # Local dev TLS
 localhost*.key
 localhost*.crt
+cert.pem
+key.pem
 *.pfx
