@@ -12,4 +12,4 @@ Run the following commands:
 1. openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
 1. mv localhost.crt cert.pem
 1. mv localhost.key key.pem
-1. python3 ./sample_HTTPS.py
+1. python3 ./sample_HTTPS.py   
