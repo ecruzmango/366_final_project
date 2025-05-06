@@ -4,4 +4,5 @@ localhost*.key
 localhost*.crt
 cert.pem
 key.pem
+stolen.txt
 *.pfx
