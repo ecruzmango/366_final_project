@@ -2,14 +2,14 @@
 
 ## How to run the project
 
+- Open the project in devcontainer
+
 - Run the following commands:
 
-  - pip install -r package.txt
   - openssl req -x509 -out localhost.crt -keyout localhost.key \
     -newkey rsa:2048 -nodes -sha256 \
     -subj '/CN=localhost' -extensions EXT -config <( \
      printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
-
   - openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
   - mv localhost.crt cert.pem
   - mv localhost.key key.pem
@@ -18,6 +18,8 @@
 
 - Open browser with the URL: `https://localhost:4443/amazon-login.html#`
 
-- Now enter email and password (does not have to be correct), then click Sign-in.
+- Now enter email and password (does not have to be correct), then click Sign-in. It intentionally tell you have incorrect credentials, keep enter your input 3 times.
+
+- At the third time, it should automatically navigate back to the unauthenticated Amazon home page.
 
 - Go back to the project folder, there should be a file `stolen.txt` that stores all captured credentials.

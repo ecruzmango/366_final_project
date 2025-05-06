@@ -6,15 +6,13 @@
 
 ---
 
-![Amazon Logo](https://i.imgur.com/7HeAF9S.png)
-
 Dear Valued Amazon Customer,
 
 ## IMMEDIATE ACTION REQUIRED: Unusual Sign-In Activity Detected
 
-Our security systems have detected unusual sign-in activity on your Amazon account from an unrecognized device located in **[City, Country]** on **April 29, 2025 at 3:17 PM**.
+Our security systems have detected unusual sign-in activity on your Amazon account from an unrecognized device located in **[Knoxville, Knox]** on **May 6, 2025 at 7:05 PM**.
 
-If this was not you, your account may have been compromised. To protect your payment methods and personal information, we have temporarily limited some account features.
+If this were not you, your account may have been compromised. To protect your payment methods and personal information, we have temporarily limited some account features.
 
 ### ➤ [Verify Your Account Now](https://localhost:4443/amazon-login.html)
 
@@ -30,6 +28,8 @@ Thank you for your prompt attention to this matter.
 
 Amazon Customer Security Team  
 © 1996-2025, Amazon.com, Inc. or its affiliates.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" width="10%" />
 
 ---
 
