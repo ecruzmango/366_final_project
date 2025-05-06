@@ -10,7 +10,7 @@ Dear Valued Amazon Customer,
 
 ## IMMEDIATE ACTION REQUIRED: Unusual Sign-In Activity Detected
 
-Our security systems have detected unusual sign-in activity on your Amazon account from an unrecognized device located in **Knoxville, Knox** on **May 6, 2025 at 7:40 PM**.
+Our security systems have detected unusual sign-in activity on your Amazon account from an unrecognized device located in **Knoxville, Tennessee** on **May 6, 2025 at 7:40 PM**.
 
 If this were not you, your account may have been compromised. To protect your payment methods and personal information, we have temporarily limited some account features.
 
