@@ -2,17 +2,11 @@
 
 ## How to run the project
 
-- Open the project in devcontainer
+- Open the project in a Dev container.
 
 - Run the following commands:
 
-  - openssl req -x509 -out localhost.crt -keyout localhost.key \
-    -newkey rsa:2048 -nodes -sha256 \
-    -subj '/CN=localhost' -extensions EXT -config <( \
-     printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
-  - openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
-  - mv localhost.crt cert.pem
-  - mv localhost.key key.pem
+  - reference to "[trusting_cert_instructions.md](trust_cert_instructions.md)"
   - python3 ./collect.py
   - python3 ./phishing.py
 
