@@ -48,8 +48,8 @@ This creates two files in your directory:
 
 Copy the files to the formats we have in our `phishing.py` by running:
 ```bash
-mv localhost.pem cert.pem
-mv localhost-key.pem key.pem
+cp localhost.pem cert.pem
+cp localhost-key.pem key.pem
 ```
 
 Your Python server script will automatically use these.
@@ -80,8 +80,8 @@ This creates:
 
 Copy the files to the formats we have in our `phishing.py` by running:
 ```bash
-mv localhost.crt cert.pem
-mv localhost.key key.pem
+cp localhost.crt cert.pem
+cp localhost.key key.pem
 ```
 
 > 🧠 You’ll need to **manually trust the certificate** for browsers to accept it.
@@ -92,7 +92,7 @@ mv localhost.key key.pem
 
 ### macOS
 
-1. Double-click `localhost.crt` → opens in **Keychain Access**.
+1. Double-click `cert.pem` → opens in **Keychain Access**.
 2. Drag into the **System** or **login** keychain.
 3. Right-click → **Get Info** → **Trust** → set **“Always Trust.”**
 4. Fully quit and reopen your browser.
@@ -102,12 +102,13 @@ _Or use CLI:_
 sudo security add-trusted-cert -d \
   -r trustRoot \
   -k /Library/Keychains/System.keychain \
-  localhost.crt
+  cert.pem
 ```
 
 ---
 
 ### Windows
+for Windows users, you may have to retain `localhost.crt` for this step
 
 1. Open **PowerShell or Command Prompt as Administrator**
 2. Run:
