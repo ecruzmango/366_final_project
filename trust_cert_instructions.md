@@ -1,44 +1,103 @@
-# Generate a self-signed cert & key
 
-```bash
-openssl req -x509 \
-  -out localhost.crt \
-  -keyout localhost.key \
-  -newkey rsa:2048 \
-  -nodes \
-  -sha256 \
-  -subj '/CN=localhost' \
-  -extensions EXT \
-  -config <(printf "\
-[dn]
-CN=localhost
-\
-[req]
-distinguished_name = dn
-\
-[EXT]
-subjectAltName=DNS:localhost
-\
-keyUsage=digitalSignature
-\
-extendedKeyUsage=serverAuth")
-```
+# 🔐 Generating TLS Certificate for `localhost`
 
-- You only need this one command to get `localhost.crt` and `localhost.key`.
-- If you’d rather use a custom dev hostname—e.g., `amz.com` or `amzn.com`—just replace **localhost** everywhere (in the CN and SAN).
+The `phishing.py` server needs a TLS certificate to serve over HTTPS on `https://localhost:4443`.
+
+Below are **two ways to generate a local certificate**:
+- **Option A (recommended)**: Use [`mkcert`](https://github.com/FiloSottile/mkcert) – fast, trusted, and cross-platform.
+- **Option B**: Use `openssl` as a manual fallback if `mkcert` isn't available.
 
 ---
 
-# Trust the certificate
+## ✅ Option A — Using `mkcert` (Recommended)
 
-## macOS
+### 1️⃣ Install and trust `mkcert` CA (one-time)
 
-1. Double-click the `localhost.crt` file to open Keychain Access.
-2. Drag it into the **System** or **login** keychain.
-3. Find the cert, right-click → **Get Info** → **Trust** → set **When using this certificate** to **Always Trust**.
-4. Quit & reopen your browser.
+- **Windows**
+  ```powershell
+  choco install mkcert
+  mkcert -install
+  ```
+- **macOS**
+  ```bash
+  brew install mkcert nss
+  mkcert -install
+  ```
+- **Ubuntu / WSL**
+  ```bash
+  sudo apt update
+  sudo apt install mkcert
+  mkcert -install
+  ```
 
-_Or via CLI:_  
+> 🔁 **After `mkcert -install`:**
+> - Restart your browser (completely quit and reopen).
+> - Open a new terminal so `mkcert` is available in your PATH.
+
+### 2️⃣ Generate localhost cert (per project)
+
+```bash
+cd path/to/366_final_project
+mkcert localhost
+```
+
+This creates two files in your directory:
+
+- `localhost.pem`  
+- `localhost-key.pem`
+
+Copy the files to the formats we have in our `phishing.py` by running:
+```bash
+mv localhost.pem cert.pem
+mv localhost-key.pem key.pem
+```
+
+Your Python server script will automatically use these.
+
+---
+
+## 🛠 Option B — Using `OpenSSL` (Manual Fallback)
+
+If you can’t install `mkcert`, use this instead:
+
+### 1️⃣ OpenSSL one-liner (Linux/macOS)
+
+```bash
+openssl req -x509 -nodes -sha256 -days 365 \
+  -newkey rsa:2048 \
+  -keyout localhost.key \
+  -out   localhost.crt \
+  -subj "/CN=localhost" \
+  -addext "subjectAltName=DNS:localhost" \
+  -addext "keyUsage=digitalSignature" \
+  -addext "extendedKeyUsage=serverAuth"
+```
+
+This creates:
+
+- `localhost.crt` (certificate)
+- `localhost.key` (private key)
+
+Copy the files to the formats we have in our `phishing.py` by running:
+```bash
+mv localhost.crt cert.pem
+mv localhost.key key.pem
+```
+
+> 🧠 You’ll need to **manually trust the certificate** for browsers to accept it.
+
+---
+
+## ✅ Trusting the Certificate
+
+### macOS
+
+1. Double-click `localhost.crt` → opens in **Keychain Access**.
+2. Drag into the **System** or **login** keychain.
+3. Right-click → **Get Info** → **Trust** → set **“Always Trust.”**
+4. Fully quit and reopen your browser.
+
+_Or use CLI:_
 ```bash
 sudo security add-trusted-cert -d \
   -r trustRoot \
@@ -46,29 +105,24 @@ sudo security add-trusted-cert -d \
   localhost.crt
 ```
 
-## Windows (CLI)
+---
 
-1. Open **Command Prompt** or **PowerShell** **as Administrator**.
+### Windows
+
+1. Open **PowerShell or Command Prompt as Administrator**
 2. Run:
    ```powershell
    certutil -addstore "Root" "$(Resolve-Path localhost.crt)"
    ```
-3. Restart your browser.
-
-## Linux (Debian/Ubuntu)
-
-```bash
-sudo cp localhost.crt /usr/local/share/ca-certificates/ \
-  && sudo update-ca-certificates
-```
-
-### Fedora / RHEL / CentOS
-
-```bash
-sudo cp localhost.crt /etc/pki/ca-trust/source/anchors/ \
-  && sudo update-ca-trust extract
-```
+3. Restart your browser completely.
 
 ---
 
-If the certificate isn’t trusted, browsers will warn or block the `https://` connection.
+### Linux
+
+```bash
+sudo cp localhost.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+```
+
+---
