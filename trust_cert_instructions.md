@@ -93,9 +93,10 @@ mv localhost.key key.pem
 ### macOS
 
 1. Double-click `localhost.crt` → opens in **Keychain Access**.
-2. Drag into the **System** or **login** keychain.
-3. Right-click → **Get Info** → **Trust** → set **“Always Trust.”**
-4. Fully quit and reopen your browser.
+1. Drag into the **System** or **login** keychain.
+1. Find the new added certificate, it is usually named as **localhost**
+1. Right-click on it → **Get Info** → **Trust** → set **“Always Trust.”**
+1. Fully quit and reopen your browser.
 
 _Or use CLI:_
 ```bash
