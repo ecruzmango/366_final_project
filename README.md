@@ -1,4 +1,4 @@
-# Phishing Project Report: Amazon Credential and Credit Card Theft
+# Phishing Project Report: Amazon Credential Theft
 
 ## How to run the project
 
@@ -17,3 +17,4 @@
 - At the third time, it should automatically navigate back to the unauthenticated Amazon home page.
 
 - Go back to the project folder, there should be a file `stolen.txt` that stores all captured credentials.
+
