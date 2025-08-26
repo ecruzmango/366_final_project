@@ -1,5 +1,5 @@
 # Cybersecurity: Local Phishing Awareness Simulator
-<img src="images/amazon-login-page.png" alt="logo" width="600">
+<img src="images/amazon-login.png" alt="logo" width="600">
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -29,11 +29,11 @@
 
 - Open browser with the URL: `https://localhost:4443/amazon-login.html#`
 
-- Now enter email and password (does not have to be correct), then click Sign-in. It intentionally tells you have incorrect credentials, keep entering your input 3 times.
+- Now enter email and password (does not have to be correct), then click Sign-in. It intentionally prompts for incorrect credentials, keep entering your input 3 times.
 
-- At the third time, it should automatically navigate back to the unauthenticated Amazon home page.
+- At the third time, it should automatically navigate back to the legitimate unauthenticated Amazon home page.
 
-- Go back to the project folder, there should be a file `stolen.txt` that stores all captured credentials.
+- Go back to the project folder, a new generated file `stolen.txt` has captured provided credentials.
 
 ## Ethics
 - For educational use in a controlled environment only.
