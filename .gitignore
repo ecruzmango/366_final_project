@@ -2,6 +2,8 @@
 # Local dev TLS
 localhost*.key
 localhost*.crt
+localhost-key.pem
+localhost.pem
 cert.pem
 key.pem
 stolen.txt
